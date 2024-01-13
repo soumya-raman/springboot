@@ -24,6 +24,7 @@ pipeline {
                 echo "----------- unit test Completed ----------"
             }
         }
+        /*
 
         stage('SonarQube analysis') {
             environment {
@@ -48,6 +49,7 @@ pipeline {
                 }
             }
         }
+        */
 
     
      stage("Artifact Publish") {
@@ -74,6 +76,7 @@ pipeline {
                 }
             }   
         }
+        
 
     
     stage(" Create Docker Image ") {
