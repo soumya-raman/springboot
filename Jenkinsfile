@@ -75,8 +75,34 @@ pipeline {
             }   
         }
 
+    
+    stage(" Create Docker Image ") {
+            steps {
+                script {
+                    echo '-------------- Docker Build Started -------------'
+                    app = docker.build("soumya22.jfrog.io/artifactory/docker-repo-image-docker/myapp:1.0")
+                    echo '-------------- Docker Build Ended -------------'
+                }
+            }
+        }
+
+        stage (" Docker Publish "){
+            steps {
+                script {
+                        echo '---------- Docker Publish Started --------'  
+                        docker.withRegistry("https://soumya22.jfrog.io/", 'jfrog-cred'){
+                        app.push()
+                        echo '------------ Docker Publish Ended ---------'  
+                    }    
+                }
+            }
+        }
+
     }
 }
+
+
+
 
 
     
